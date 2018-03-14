@@ -1,6 +1,6 @@
 {
     "name": "dyrynda/laravel-ldap",
-    "description": "A Laravel package to handle common LDAP functionality.",
+    "description": "Leverage Laravel's middleware to ensure your LDAP-authenticated users stay that way.",
     "type": "library",
     "license": "MIT",
     "authors": [
