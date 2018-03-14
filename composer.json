@@ -1,12 +1,12 @@
 {
-    "name": "nuskope/ldap",
+    "name": "dyrynda/laravel-ldap",
     "description": "A Laravel package to handle common LDAP functionality.",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
             "name": "Michael Dyrynda",
-            "email": "michael.dyrynda@staff.nuskope.com.au"
+            "email": "michael@dyrynda.com.au"
         }
     ],
     "require": {
@@ -15,13 +15,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Nuskope\\Ldap\\": "src/"
+            "Dyrynda\\Ldap\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Nuskope\\Ldap\\NuskopeLdapServiceProvider"
+                "Dyrynda\\Ldap\\LdapServiceProvider"
             ]
         }
     }
