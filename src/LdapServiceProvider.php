@@ -18,8 +18,6 @@ class LdapServiceProvider extends ServiceProvider
             __DIR__.'/../config/ldap.php' => config_path('laravel_ldap.php'),
         ], 'laravel-ldap');
 
-        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-
         Carbon::macro('fromNanosecondInterval', function ($nanoseconds) {
             // Return the 100-nanosecond interval value as a normalised UNIX timestamp
             return with(round($nanoseconds / 10000000), function ($seconds) {
