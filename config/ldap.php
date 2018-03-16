@@ -19,8 +19,10 @@ return [
     // Set the number of days where we should consider the password as expiring
     'password_expiry_threshold' => 5,
 
-    // Number of seconds between 1601-01-01 00:00:00 and 1970-01-01 00:00:00
-    // This is to account for the difference in a UNIX and LDAP timestamp.
+    /*
+     * Number of seconds between 1601-01-01 00:00:00 and 1970-01-01 00:00:00
+     * This is to account for the difference in a UNIX and LDAP timestamp.
+     */
     'windows_epoch_interval' => 11644473600,
 
 ];
