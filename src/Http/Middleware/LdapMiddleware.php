@@ -4,8 +4,8 @@ namespace Dyrynda\Ldap\Http\Middleware;
 
 use Adldap;
 use Closure;
-use Illuminate\Support\MessageBag;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\MessageBag;
 
 class LdapMiddleware
 {
@@ -74,13 +74,14 @@ class LdapMiddleware
      */
     protected function passwordWasUpdated($request)
     {
-        if (! isset($request->user()->password_updated_at)) {
+        // If the password attribute doesn't exist on the user model, skip this check
+        if (! array_key_exists(config('laravel_ldap.password_expiration_field'), $request->user()->getAttributes())) {
             return false;
         }
 
         return Carbon::fromNanosecondInterval(
             array_first($this->ldapUser->pwdlastset)
-        )->gt(Carbon::fromNanosecondInterval($request->user()->password_updated_at));
+        )->gt(Carbon::fromNanosecondInterval($this->passwordUpdated($request)));
     }
 
     /**
@@ -134,14 +135,14 @@ class LdapMiddleware
     }
 
     /**
-     * Retrieve the username of the current requests's user.
+     * Retrieve the timestamp which determines when the user last updated their password.
      *
      * @param  \Illuminate\Http\Request  $request
      *
      * @return string
      */
-    protected function username($request)
+    protected function passwordUpdated($request)
     {
-        return data_get($request->user(), config('laravel_ldap.username'));
+        return data_get($request->user(), config('laravel_ldap.password_expiration_field'));
     }
 }
