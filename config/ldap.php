@@ -10,8 +10,11 @@ return [
         // 'cn=Accounting,ou=Groups,dc=acme,dc=group',
     ],
 
-    // Set the name of the field that you use as your application's "username" field
-    'username' => 'username',
+    /*
+     * Set the name of the field that you use as your application's "identifier" field
+     * Using 'username' is the default as it is available in Laravel out of the box.
+     */
+    'identifier' => 'username',
 
     // Set the number of days where we should consider the password as expiring
     'password_expiry_threshold' => 5,

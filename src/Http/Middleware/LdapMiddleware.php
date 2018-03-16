@@ -26,7 +26,7 @@ class LdapMiddleware
 
         if (! $this->ldapUser = $this->getRequestUser($request)) {
             $messageBag = new MessageBag([
-                $this->username($request) => ['Your account has been disabled or no longer exists.'],
+                $this->identifier($request) => ['Your account has been disabled or no longer exists.'],
             ]);
         } elseif ($this->ldapUserDisallowed()) {
             $messageBag = new MessageBag([
@@ -105,7 +105,7 @@ class LdapMiddleware
     protected function getRequestUser($request)
     {
         return cache()->remember($this->cacheKey($request), 5, function () use ($request) {
-            return Adldap::search()->find($this->username($request));
+            return Adldap::search()->find($this->identifier($request));
         });
     }
 
@@ -118,7 +118,19 @@ class LdapMiddleware
      */
     protected function cacheKey($request)
     {
-        return sprintf('ldapUser.%s', str_slug($this->username($request)));
+        return sprintf('ldapUser.%s', str_slug($this->identifier($request)));
+    }
+
+    /**
+     * Retrieve the identifying field from the current request's user.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     *
+     * @return string
+     */
+    protected function identifier($request)
+    {
+        return data_get($request->user(), config('laravel_ldap.identifier'));
     }
 
     /**
