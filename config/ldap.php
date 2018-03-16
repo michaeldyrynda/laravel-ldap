@@ -19,6 +19,9 @@ return [
     // Set the number of days where we should consider the password as expiring
     'password_expiry_threshold' => 5,
 
+    // Set the name of the field to check password expiration against
+    'password_expiration_field' => 'password_updated_at',
+
     /*
      * Number of seconds between 1601-01-01 00:00:00 and 1970-01-01 00:00:00
      * This is to account for the difference in a UNIX and LDAP timestamp.
