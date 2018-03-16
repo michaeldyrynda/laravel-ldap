@@ -51,9 +51,9 @@ If you wish to log users out based on their password being updated, you must cac
 You will need to configure modify the `adldap_auth.php` configuration file to sync the `pwdlastset` value from LDAP.
 
 ```php
-    'sync_attributes' => [
-        'password_updated_at' => 'pwdlastset',
-    ],
+'sync_attributes' => [
+    'password_updated_at' => 'pwdlastset',
+],
 ```
 
 Ensure you have a the corresponding database field configured.
