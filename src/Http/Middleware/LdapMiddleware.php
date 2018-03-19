@@ -30,7 +30,7 @@ class LdapMiddleware
             ]);
         } elseif ($this->ldapUserDisallowed()) {
             $messageBag = new MessageBag([
-                $this->username($request) => ['You no longer have access to this application.'],
+                $this->identifier($request) => ['You no longer have access to this application.'],
             ]);
         } elseif ($this->passwordWasUpdated($request)) {
             $messageBag = new MessageBag([
