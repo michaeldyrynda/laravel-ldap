@@ -12,10 +12,6 @@ Once the package is installed, publish the configuration file
 
     php artisan vendor:publish --tag="laravel-ldap"
 
-Run the package migrations
-
-    php artisan migrate
-
 ## Configuration
 
 The three keys you are likely to change are `allowed_groups`, `username`, and `password_expiry_threshold`.
