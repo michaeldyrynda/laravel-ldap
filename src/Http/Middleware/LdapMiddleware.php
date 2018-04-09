@@ -26,11 +26,11 @@ class LdapMiddleware
 
         if (! $this->ldapUser = $this->getRequestUser($request)) {
             $messageBag = new MessageBag([
-                $this->identifier($request) => ['Your account has been disabled or no longer exists.'],
+                config('laravel_ldap.identifier') => ['Your account has been disabled or no longer exists.'],
             ]);
         } elseif ($this->ldapUserDisallowed()) {
             $messageBag = new MessageBag([
-                $this->identifier($request) => ['You no longer have access to this application.'],
+                config('laravel_ldap.identifier') => ['You no longer have access to this application.'],
             ]);
         } elseif ($this->passwordWasUpdated($request)) {
             $messageBag = new MessageBag([
