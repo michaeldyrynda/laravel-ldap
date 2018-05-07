@@ -62,7 +62,7 @@ class LdapMiddleware
     {
         return with(config('laravel_ldap.allowed_groups'), function ($allowedGroups) {
             $allowedGroups = array_map(function ($group) {
-                return mb_strtoupper($allowedGroups);
+                return mb_strtoupper($group);
             }, $allowedGroups);
 
             return array_intersect($allowedGroups, array_map(function ($group) {
