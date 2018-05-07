@@ -61,7 +61,13 @@ class LdapMiddleware
     protected function ldapUserDisallowed()
     {
         return with(config('laravel_ldap.allowed_groups'), function ($allowedGroups) {
-            return array_intersect($allowedGroups, $this->ldapUser->memberof) !== $allowedGroups;
+            $allowedGroups = array_map(function ($group) {
+                return mb_strtoupper($group);
+            }, $allowedGroups);
+
+            return array_intersect($allowedGroups, array_map(function ($group) {
+                return mb_strtoupper($group);
+            }, $this->ldapUser->memberof)) !== $allowedGroups;
         });
     }
 
