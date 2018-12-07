@@ -60,6 +60,16 @@ Schema::table('users', function (Blueprint $table) {
 });
 ```
 
+
+### Testing
+
+By default ldap is enabled for testing, this can be toggled within the config `laravel_ldap.php`
+ 
+```php
+'disable_while_testing' => true,
+```
+
+
 Lastly, update the `password_expiration_field` (if not using the default `password_updated_at`) in your `laravel_ldap.php` configuration file.
 
 ## Support

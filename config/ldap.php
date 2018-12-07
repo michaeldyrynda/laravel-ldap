@@ -28,4 +28,9 @@ return [
      */
     'windows_epoch_interval' => 11644473600,
 
+    /*
+     * Disable ldap while running unit tests
+     */
+    'disable_while_testing' => false,
+
 ];
