@@ -24,6 +24,10 @@ class LdapMiddleware
             return redirect()->route('login');
         }
 
+        if (config('laravel_ldap.disable_while_testing') && app()->runningUnitTests()) {
+            return $next($request);
+        }
+
         if (! $this->ldapUser = $this->getRequestUser($request)) {
             $messageBag = new MessageBag([
                 config('laravel_ldap.identifier') => ['Your account has been disabled or no longer exists.'],
