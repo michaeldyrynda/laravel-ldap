@@ -10,8 +10,8 @@
         }
     ],
     "require": {
-        "illuminate/support": "^5.5",
-        "adldap2/adldap2-laravel": "^5.1"
+        "illuminate/support": "^6.0",
+        "adldap2/adldap2-laravel": "^6.0"
     },
     "autoload": {
         "psr-4": {
