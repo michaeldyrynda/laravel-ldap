@@ -4,6 +4,7 @@ namespace Dyrynda\Ldap\Http\Middleware;
 
 use Adldap;
 use Closure;
+use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\MessageBag;
 
@@ -129,7 +130,7 @@ class LdapMiddleware
      */
     protected function cacheKey($request)
     {
-        return sprintf('ldapUser.%s', str_slug($this->identifier($request)));
+        return sprintf('ldapUser.%s', Str::slug($this->identifier($request)));
     }
 
     /**
