@@ -4,6 +4,7 @@ namespace Dyrynda\Ldap\Http\Middleware;
 
 use Adldap;
 use Closure;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\MessageBag;
@@ -91,7 +92,7 @@ class LdapMiddleware
         }
 
         return Carbon::fromNanosecondInterval(
-            array_first($this->ldapUser->pwdlastset)
+            Arr::first($this->ldapUser->pwdlastset)
         )->gt(Carbon::fromNanosecondInterval($this->passwordUpdated($request)));
     }
 
@@ -103,7 +104,7 @@ class LdapMiddleware
     protected function passwordIsExpiring()
     {
         return Carbon::fromNanosecondInterval(
-            array_first($this->ldapUser->accountexpires)
+            Arr::first($this->ldapUser->accountexpires)
         )->lte(now()->addDays(config('laravel_ldap.password_expiry_threshold')));
     }
 
