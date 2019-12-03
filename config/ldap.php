@@ -33,4 +33,9 @@ return [
      */
     'disable_while_testing' => false,
 
+    /*
+     * Disable ldap while in local environment
+     */
+    'disable_on_local' => false,
+
 ];

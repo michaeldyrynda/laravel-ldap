@@ -30,6 +30,10 @@ class LdapMiddleware
             return $next($request);
         }
 
+        if (config('laravel_ldap.disable_on_local') && app()->isLocal()) {
+            return $next($request);
+        }
+
         if (! $this->ldapUser = $this->getRequestUser($request)) {
             $messageBag = new MessageBag([
                 config('laravel_ldap.identifier') => ['Your account has been disabled or no longer exists.'],
